@@ -2,6 +2,10 @@
 
 import inquirer from "inquirer";
 import chalk from "chalk";
+
+let loop = true
+while(loop){
+
 const answer = await inquirer.prompt([
     { message: "Enter your first number", type: "number", name: "firstNumber" },
     { message: "Enter your second number", type: "number", name: "secondNumber" },
@@ -25,4 +29,17 @@ if (answer.operator === "Addition") {
 } else {
     console.log("Please select valid operator")
 }
-console.log ("THE END");
+
+const calculatorMore = await inquirer.prompt({
+    type: "confirm",
+    name: "more",
+    message: "Do you want more Calculations?",
+    default: false
+}); 
+
+if (!calculatorMore.more){
+    loop = false;
+    console.log(`\n"The End"`)
+}
+
+}
